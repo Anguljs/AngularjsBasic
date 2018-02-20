@@ -1,0 +1,76 @@
+﻿
+@{
+    ViewBag.Title = "Usuario";
+}
+
+<h2>Usuario</h2>
+<link href="~/Content/Table.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/angular.min.js"></script>
+<script src="~/App/Config/app.js"></script>
+<script src="~/App/Factory/UsuarioFactory.js"></script>
+
+<div ng-app="app" >
+    <div ng-controller="appCtrl">
+
+        <table class="blueTable">
+
+            <tr>
+                <th>IdUsuario</th>
+                <th>Nombre</th>
+                <th>Correo</th>
+                <th>CodigoPostal</th>
+                <th>Country</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
+            </tr>
+
+            <tr ng-repeat="x in usuariosData">
+
+                <td>{{x.IdUsuario}}</td>
+                <td>{{x.Nombre}}</td>
+                <td>{{x.Correo}}</td>
+                <td>{{x.CodigoPostal}}</td>
+                <td>{{x.Country}}</td>
+                <td><button ng-model="$scope.Usuario" ng-click="edit(usuariosData[$index])" class="btn btn-success">Editar</button></td>
+                <td><button ng-click="delete($index)" class="btn btn-danger">Eliminar</button></td>
+            </tr>
+        </table>
+
+
+        <div>
+            <h3 ng-hide="hidelblSave">Add new item</h3>
+            <h3 ng-hide="hidelblEdit">Edit item</h3>
+        </div>
+
+        <div>
+            <label>Nombre</label>
+            <input type="text" class="form-control" ng-model="Usuario.Nombre" />
+        </div>
+
+        <div>
+            <label>Correo</label>
+            <input type="text" class="form-control" ng-model="Usuario.Correo" />
+        </div>
+
+        <div>
+            <label>CodigoPostal</label>
+            <input type="text" class="form-control" ng-model="Usuario.CodigoPostal" />
+        </div>
+
+        <div>
+            <label>Country</label>
+            <input type="text" class="form-control" ng-model="Usuario.Country" />
+        </div>
+
+        <div>
+            <br />          
+            <button ng-click="save()"  class="btn btn-info" ng-hide="hideSave">Guardar</button>
+            <button ng-click="update()"  class="btn btn-info" ng-hide="hideEdit">Editar</button>
+            <button ng-click="clear()" class="btn btn-secondary">Limpiar</button>
+        </div>
+
+    </div>
+
+
+</div>
